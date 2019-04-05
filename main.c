@@ -2,6 +2,13 @@
 #include <pthread.h> 
 #include <semaphore.h> 
 #include <stdio.h> 
+
+#Global variables
+int state[5];
+int philosophers[5] = {0, 1, 2, 3, 4};
+
+sem_t mutex;
+sem_t semaphore;;
   
 #Function Prototypes
 void philosopher();
