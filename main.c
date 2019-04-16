@@ -16,8 +16,8 @@ int forks[5] = {0, 1, 2, 3, 4};
 int max_time = 10;
 int min_time = 1;
 
-//sem_t mutex;
-//sem_t semaphore[5];
+sem_t mutex;
+sem_t semaphore[5];
 
   
 //Function Prototypes
@@ -36,7 +36,7 @@ int main() {
 	  
 	  //initialize semaphore
 	  //sem_init() returns 0 on success; on error, -1 is returned, and errno is set to indicate the error
-	  //sem_init(&mutex, 0, 1);
+	  sem_init(&mutex, 0, 1);
 
 	  //initialize a semaphore for each philosipher
 	  for(i = 0; i < NUM_THREADS; i++) {
