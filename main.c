@@ -2,7 +2,7 @@
 #include<pthread.h> 
 #include<semaphore.h> 
 #include<stdio.h> 
-#include<time.h>
+#include<unistd.h>
 #include<stdlib.h> 
 
 #define NUM_THREADS 5
@@ -40,7 +40,7 @@ int main() {
 
 	  //initialize a semaphore for each philosipher
 	  for(i = 0; i < NUM_THREADS; i++) {
-	    int j = 0;//sem_init(&semaphore[i], 0, 0);
+	    int j = sem_init(&semaphore[i], 0, 0);
 	  	if (j != 0) {
 	  		printf("\nError initializing semaphores");
 	  		return 0;
@@ -73,6 +73,7 @@ void *philosopher(void *philosopher_thread) {
 void think(int this_philosipher){
   int time = rand() % (max_time - min_time + 1) + min_time;
   printf("\nPhilosopher %d is thinking for %d seconds", this_philosipher, time);
+  sleep(time);
   return;
 }
 //pick up chopsticks/fork
@@ -90,5 +91,6 @@ void put_forks(int this_philosipher){
 void eat(int this_philosipher){
   int time = rand() % (max_time - min_time + 1) + min_time;
   printf("\nPhilosopher %d is eating for %d seconds!", this_philosipher, time);
+  sleep(time);
   return;
 }
